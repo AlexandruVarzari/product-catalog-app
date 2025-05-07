@@ -76,15 +76,27 @@ body {
   background: none;
   border: none;
   color: var(--header-text);
-  font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
   margin-left: auto;
+  transition: transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle svg {
+  width: 24px;
+  height: 24px;
   transition: transform 0.3s;
 }
 
 .theme-toggle:hover {
   transform: scale(1.1);
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(15deg);
 }
 
 .main-content {
@@ -132,7 +144,27 @@ body {
 
 .sort-btn {
   padding: 0.7rem 1rem;
+  background-color: var(--button-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
+.sort-btn:hover {
+  background-color: var(--button-primary-hover);
+  transform: translateY(-1px);
+}
+
+.sort-btn:active {
+  transform: translateY(0);
+}
+
 .remove-btn {
   padding: 0.7rem 1rem;
 }
@@ -224,14 +256,64 @@ body {
   padding: 1rem;
   background-color: var(--filter-bg);
   border-radius: 8px;
+  align-items: center;
 }
 
-.filters select {
-  padding: 0.5rem;
+.select-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.select-label {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.select {
+  padding: 0.7rem 2.5rem 0.7rem 1rem;
   border: 1px solid var(--card-border);
   border-radius: 4px;
   background-color: var(--card-bg);
   color: var(--text-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  appearance: none;
+  width: 100%;
+}
+
+.select-icon {
+  position: absolute;
+  right: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-icon svg {
+  width: 1em;
+  height: 1em;
+  color: var(--text-color);
+}
+
+.select:hover {
+  border-color: var(--button-primary);
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--button-primary);
+  box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.1);
 }
 
 /* Loading and Error states */

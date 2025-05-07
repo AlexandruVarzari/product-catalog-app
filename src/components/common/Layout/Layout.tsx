@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../../context/CartContext";
 import { useTheme } from "../../../context/ThemeContext";
+import { MoonIcon } from "../Icons/MoonIcon";
+import { SunIcon } from "../Icons/SunIcon";
 
 interface LayoutProps {
   children: ReactNode;
@@ -32,7 +34,7 @@ export const Layout = ({ children }: LayoutProps) => {
               theme === "light" ? "dark" : "light"
             } theme`}
           >
-            {theme === "light" ? "🌙" : "☀️"}
+            {theme === "light" ? <MoonIcon /> : <SunIcon />}
           </button>
         </nav>
       </header>
@@ -40,7 +42,7 @@ export const Layout = ({ children }: LayoutProps) => {
       <main className="main-content">{children}</main>
 
       <footer className="footer">
-        <p>&copy; 2024 E-Commerce App. All rights reserved.</p>
+        <p> E-Commerce Test App 2025</p>
       </footer>
     </div>
   );

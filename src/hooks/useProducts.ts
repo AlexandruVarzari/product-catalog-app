@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Product, FilterOptions } from "../types";
 import { api } from "../services/api";
+import axios from "axios";
 
 export const useProducts = (filters: FilterOptions) => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -8,9 +9,13 @@ export const useProducts = (filters: FilterOptions) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchProducts = async () => {
       try {
         setLoading(true);
+        setError(null);
+
         const data = filters.category
           ? await api.getProductsByCategory(filters.category)
           : await api.getProducts();
@@ -29,13 +34,28 @@ export const useProducts = (filters: FilterOptions) => {
 
         setProducts(sortedData);
       } catch (err) {
-        setError("Failed to fetch products");
+        if (axios.isCancel(err)) {
+          // Request was cancelled, do nothing
+          return;
+        }
+
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unexpected error occurred");
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchProducts();
+
+    // Cleanup function to cancel the request if the component unmounts
+    // or if the filters change
+    return () => {
+      controller.abort();
+    };
   }, [filters]);
 
   return { products, loading, error };

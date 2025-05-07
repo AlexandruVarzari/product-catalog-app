@@ -3,6 +3,7 @@ import { useProducts } from "../../hooks/useProducts";
 import { ProductCard } from "../../components/common/Card/ProductCard";
 import { useCart } from "../../context/CartContext";
 import { FilterOptions } from "../../types";
+import { Select } from "../../components/common/Select/Select";
 
 export const Home = () => {
   const [filters, setFilters] = useState<FilterOptions>({
@@ -14,24 +15,33 @@ export const Home = () => {
   const { products, loading, error } = useProducts(filters);
   const { addToCart } = useCart();
 
+  const categoryOptions = [
+    { value: "", label: "All Categories" },
+    { value: "electronics", label: "Electronics" },
+    { value: "jewelery", label: "Jewelery" },
+    { value: "men's clothing", label: "Men's Clothing" },
+    { value: "women's clothing", label: "Women's Clothing" },
+  ];
+
+  const sortOptions = [
+    { value: "price", label: "Price" },
+    { value: "name", label: "Name" },
+  ];
+
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="home-page">
       <div className="filters">
-        <select
+        <Select
+          options={categoryOptions}
           value={filters.category}
           onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-        >
-          <option value="">All Categories</option>
-          <option value="electronics">Electronics</option>
-          <option value="jewelery">Jewelery</option>
-          <option value="men's clothing">Men's Clothing</option>
-          <option value="women's clothing">Women's Clothing</option>
-        </select>
+        />
 
-        <select
+        <Select
+          options={sortOptions}
           value={filters.sortBy}
           onChange={(e) =>
             setFilters({
@@ -39,10 +49,7 @@ export const Home = () => {
               sortBy: e.target.value as "price" | "name",
             })
           }
-        >
-          <option value="price">Price</option>
-          <option value="name">Name</option>
-        </select>
+        />
 
         <button
           className="sort-btn"
