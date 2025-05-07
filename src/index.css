@@ -8,12 +8,12 @@
 :root[data-theme="light"] {
   --bg-color: #ffffff;
   --text-color: #333;
-  --header-bg: #2c3e50;
-  --header-text: #ffffff;
+  --nav-color-text: #9aa6b2;
+  --header-text: #000000;
   --card-bg: #ffffff;
   --card-border: #ddd;
-  --button-primary: #3498db;
-  --button-primary-hover: #2980b9;
+  --button-primary: #111827;
+  --button-primary-hover: #393e46;
   --button-secondary: #e74c3c;
   --button-secondary-hover: #c0392b;
   --filter-bg: #f8f9fa;
@@ -22,12 +22,11 @@
 :root[data-theme="dark"] {
   --bg-color: #1a1a1a;
   --text-color: #ffffff;
-  --header-bg: #1a1a1a;
   --header-text: #ffffff;
   --card-bg: #2d2d2d;
   --card-border: #404040;
-  --button-primary: #2980b9;
-  --button-primary-hover: #3498db;
+  --button-primary: #9aa6b2;
+  --button-primary-hover: #dbdbdb;
   --button-secondary: #c0392b;
   --button-secondary-hover: #e74c3c;
   --filter-bg: #2d2d2d;
@@ -50,7 +49,6 @@ body {
 }
 
 .header {
-  background-color: var(--header-bg);
   padding: 1rem;
   color: var(--header-text);
 }
@@ -59,6 +57,7 @@ body {
   display: flex;
   gap: 1rem;
   align-items: center;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .nav-link {
@@ -70,7 +69,7 @@ body {
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--nav-color-text);
 }
 
 .theme-toggle {
@@ -97,10 +96,10 @@ body {
 }
 
 .footer {
-  background-color: var(--header-bg);
   color: var(--header-text);
   padding: 1rem;
   text-align: center;
+  border-top: 1px solid var(--card-border);
 }
 
 /* Buttons */
@@ -134,6 +133,9 @@ body {
 .sort-btn {
   padding: 0.7rem 1rem;
 }
+.remove-btn {
+  padding: 0.7rem 1rem;
+}
 
 /* Product Grid */
 .products-grid {
@@ -144,13 +146,12 @@ body {
 }
 
 .product-card {
-  border: 1px solid var(--card-border);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 8px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  background-color: var(--card-bg);
+  justify-content: space-between;
   transition: transform 0.3s;
 }
 
@@ -195,6 +196,7 @@ body {
   border: 1px solid var(--card-border);
   border-radius: 8px;
   background-color: var(--card-bg);
+  align-items: center;
 }
 
 .cart-item-image {

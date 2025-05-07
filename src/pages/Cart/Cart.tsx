@@ -30,13 +30,15 @@ export const Cart = () => {
               <p>Quantity: {item.quantity}</p>
               <p>Subtotal: ${(item.price * item.quantity).toFixed(2)}</p>
             </div>
-            <Button
-              variant="secondary"
-              onClick={() => removeFromCart(item.id)}
-              className="remove-btn"
-            >
-              Remove
-            </Button>
+            <div>
+              <Button
+                variant="secondary"
+                onClick={() => removeFromCart(item.id)}
+                className="remove-btn"
+              >
+                Remove
+              </Button>
+            </div>
           </div>
         ))}
       </div>
