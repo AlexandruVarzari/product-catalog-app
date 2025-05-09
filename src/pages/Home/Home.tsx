@@ -3,7 +3,7 @@ import { useProducts } from "../../hooks/useProducts";
 import { ProductCard } from "../../components/common/Card/ProductCard";
 import { useCart } from "../../context/CartContext";
 import { FilterOptions } from "../../types";
-import { Select } from "../../components/common/Select/Select";
+import { Select } from "../../components/common/Icons/Select";
 
 export const Home = () => {
   const [filters, setFilters] = useState<FilterOptions>({
